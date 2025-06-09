@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+members = ["mwc"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-username/mpsx"
+homepage = "https://github.com/your-username/mpsx"
+documentation = "https://docs.rs/mpsx"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+opt-level = 0
+debug = true
