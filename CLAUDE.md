@@ -79,10 +79,17 @@ cargo build --release         # Optimized release build
 
 ### Testing
 ```bash
+# Standard cargo test
 cargo test                     # Run all tests
 cargo test -p <crate-name>     # Run tests for specific project
 cargo test --test integration_tests  # Run integration tests only
 cargo test test_name          # Run specific test
+
+# Preferred: cargo nextest (faster, better CI support)
+cargo nextest run              # Run all tests with nextest
+cargo nextest run -p <crate-name>  # Run tests for specific project
+cargo nextest run --test integration_tests  # Run integration tests only
+cargo test --doc              # Run doctests (nextest doesn't support doctests)
 ```
 
 ### Running
