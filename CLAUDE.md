@@ -16,9 +16,15 @@ This is a Rust workspace containing reimplementations of common POSIX utilities 
 
 ### Dependencies Management
 - **Always use `cargo add`** to add dependencies, not manual Cargo.toml editing
+- **Use `cargo add` without version specifiers when adding new dependencies**
 - For CLI testing, add these dev dependencies: `assert_cmd`, `predicates`, `assert_fs`
 - For CLI argument parsing, use `clap` with `derive` feature
 - Workspace uses **Rust 2024 edition**
+
+### Workspace Management
+- Use `cargo new --bin` to add new binary crates to this workspace rather than directly editing/creating files
+- Use `cargo new --lib` to add new library crates to this workspace rather than directly editing/creating files
+- **To remove a crate from the workspace**: `rm -rf` the project directory and update the `workspace.members` attribute in `Cargo.toml`
 
 ### Integration Testing Best Practices
 Based on [Rust CLI Book testing guidance](https://rust-cli.github.io/book/tutorial/testing.html):
@@ -98,3 +104,8 @@ cargo fmt                     # Format code
 - CLI interface using `clap` with derive features
 - Comprehensive integration test suite covering all standard `wc` functionality
 - Tests use regex patterns to validate output format consistency
+
+## Rust Code Patterns
+
+- **Memory Management**: 
+  - `std::mem::replace` and `std::mem::take` allow moving values out of borrowed structs to transform them in-place, bypassing ownership restrictions when reassigning self.field = self.field.transform().
