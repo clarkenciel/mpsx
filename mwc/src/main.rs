@@ -407,14 +407,7 @@ fn digits(n: usize) -> usize {
     if n == 0 {
         return 1;
     }
-    let mut digs = 0;
-    let mut n = n;
-    while n > 0 {
-        n /= 10;
-        digs += 1;
-    }
-
-    digs
+    (n.ilog10() + 1) as usize
 }
 
 #[test]
